@@ -1,8 +1,8 @@
 import { log } from 'console';
 import { Body, Controller, Delete, Ip, Post, Req } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import RefreshTokenDto from './dto/refresh-token.dto';
-import { LoginDto } from './dto/login.dto';
+import RefreshTokenDto from './Dto/refresh-token.dto';
+import { LoginDto } from './Dto/login.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -14,7 +14,7 @@ export class AuthController {
       ipAddress: ip,
       userAgent: request.headers['user-agent'],
     });
-    console.log({ a }, 'a');
+
     return a;
   }
 
