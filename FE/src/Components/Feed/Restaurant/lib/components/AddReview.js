@@ -19,9 +19,7 @@ function AddReview({ restaurantId }) {
     formData.append('rating', parseInt(rating, 10))
     formData.append('text', text)
     formData.append('restavracija', restaurantId)
-    //TODO: dynamic user
-    formData.append('uporabnik', 'ca6f5e63-1985-4e5c-9d78-4f99d1a97674')
-    
+    formData.append('uporabnik', sessionStorage.getItem('user_id'))
 
     const {data, status} = await axios.post('/review', formData, {
       headers: {

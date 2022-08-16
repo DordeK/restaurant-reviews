@@ -16,7 +16,7 @@ function Reviews({reviews}) {
     const {status} = await axios.post('comment', {
       text,
       review: id,
-      uporabnik: 'ca6f5e63-1985-4e5c-9d78-4f99d1a97674'
+      uporabnik: sessionStorage.getItem('user_id')
     })
 
     if (status === 201) window.location.reload();
@@ -74,13 +74,6 @@ function Reviews({reviews}) {
                 <button type='submit' style={{borderRadius:'20px'}} >post</button>
               </form>
           </div>
-          <div 
-            id="fullpage" 
-            style={{height:'500px', width:'500px', top:'50%', bottom:'50%', position:'fixed', transform: 'translate(-50%, -50%)', left:'50%', right:'50%'}} 
-            onClick={() => {
-              document.querySelector('#fullpage').style.display='none'
-              document.querySelector('body').style.overflow = 'auto'
-            }}></div>
         </>
       ))}
     </div>

@@ -11,12 +11,17 @@ function Login() {
       const email = form.target.email.value
       const password = form.target.password.value
 
-      const {status, data} = await axios.post('/login', {
+      const {status, data: { refreshToken, accessToken, id, username, email: userEmail }} = await axios.post('/auth/login', {
         email,
         password,
       })
-
-      if (status === 201 && data.username){
+      
+      if (status === 201 && refreshToken) {
+        sessionStorage.setItem("refreshToken", refreshToken);
+        sessionStorage.setItem("accessToken", accessToken);
+        sessionStorage.setItem("user_id", id);
+        sessionStorage.setItem("username", username);
+        sessionStorage.setItem("email", userEmail);
         navigate('/home')
       }
       return
@@ -30,6 +35,7 @@ function Login() {
               <div className="form-group mt-3">
                 <label>Email address</label>
                 <input
+                  name='email'
                   type="email"
                   className="form-control mt-1"
                   placeholder="Enter email"
@@ -38,6 +44,7 @@ function Login() {
               <div className="form-group mt-3">
                 <label>Password</label>
                 <input
+                  name='password'
                   type="password"
                   className="form-control mt-1"
                   placeholder="Enter password"

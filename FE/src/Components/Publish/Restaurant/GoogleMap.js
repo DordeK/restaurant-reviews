@@ -38,7 +38,7 @@ export default function SimpleMap({setLocation}){
             setLocation(position)
             serCoords(position)
         }}
-        bootstrapURLKeys={{ key: "AIzaSyBpjz-P8SNVRo1kgmQGAp-uT_NBcCUKw6g" }}
+        bootstrapURLKeys={{key: process.env.REACT_APP_GOOGLE_MAP_API_KEY}}
         defaultCenter={coords}
         defaultZoom={11}
       >

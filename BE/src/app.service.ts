@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
-import { verify } from 'crypto';
 import { UserDto, ReviewDto, MenuDto, CommentDto, RestaurantDto } from './Dto';
-import RefreshToken from './entitys';
 const prisma = new PrismaClient();
 
 @Injectable()

@@ -31,3 +31,8 @@
   transform: rotateX(15deg);
   box-shadow: 0 15px 15px #00a8ff;
 }
+
+.refreshPage:hover{
+  background-color: black;
+  color: white
+}

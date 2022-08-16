@@ -21,7 +21,7 @@ const Registration = () => {
     })
 
     if (status === 201 && data.username){
-      navigate('/home')
+      navigate('/login')
     }else{
       setServerError(data.error)
     }

@@ -9,10 +9,8 @@ import {
   UploadedFiles,
   Res,
   Put,
-  Delete,
-  Req,
-  Ip,
   UseGuards,
+  Req,
 } from '@nestjs/common';
 import { AppService } from './app.service';
 import {
@@ -25,6 +23,8 @@ import {
   RefreshTokenDto,
 } from './Dto';
 import { AnyFilesInterceptor } from '@nestjs/platform-express';
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { request } from 'http';
 
 @Controller()
 export class AppController {
@@ -34,6 +34,7 @@ export class AppController {
     return this.appService.register(user);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get('/restaurants')
   getRestaurants(
     @Query('page') page: number,
@@ -49,12 +50,13 @@ export class AppController {
     });
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get('/restaurant/:guid')
   getRestaurant(@Param('guid') guid: string) {
     return this.appService.getRestaurant({ guid });
   }
 
-  // @UseInterceptors(FilesInterceptor('images[]'))
+  @UseGuards(JwtAuthGuard)
   @Post('/restaurant')
   @UseInterceptors(AnyFilesInterceptor())
   addRestaurant(
@@ -70,25 +72,31 @@ export class AppController {
     }
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post('/review')
   @UseInterceptors(AnyFilesInterceptor())
   addReview(
+    @Req() request,
     @UploadedFiles() files: Array<Express.Multer.File>,
     @Body() review,
   ) {
+    console.log(request);
     return this.appService.addReview(files, review);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post('/comment')
   addComment(@Body() comment: CommentDto) {
     return this.appService.addComment(comment);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Put('/reactToReview')
   reactToReview(@Body() body) {
     return this.appService.reactToReview(body);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Put('/reactToComment')
   reactToComment(@Body() body) {
     return this.appService.reactToComment(body);
