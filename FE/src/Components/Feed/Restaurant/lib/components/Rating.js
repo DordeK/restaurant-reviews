@@ -1,8 +1,9 @@
 import React from 'react'
 
-function Rating({rating}) {
+function Rating({rating, reviews}) {
+  // const averageScore = reviews.map(review => )
   return (
-    <div>{rating.numberOfReviews}</div>
+    <div>{rating}</div>
   )
 }
 

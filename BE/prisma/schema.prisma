@@ -1,0 +1,84 @@
+// This is your Prisma schema file
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Uporabnik {
+  id           String     @id @default(uuid())
+  password     String
+  username     String
+  phone_number String
+  email        String
+  comments     Komentar[]
+  reviews      Review[]
+}
+
+model Menu {
+  id           String       @id @default(uuid())
+  image        String
+  Restavracija Restavracija @relation(fields: [restavracija], references: [id])
+  restavracija String
+}
+
+model Restavracija {
+  id       String             @id @default(uuid())
+  ocena    Int
+  ime      String             @unique
+  location Location?
+  Images   RestaurantImages[]
+  reviews  Review[]
+  menu     Menu[]
+}
+
+model Location {
+  id           String       @id @default(uuid())
+  lat          Float
+  lng          Float
+  Restavracija Restavracija @relation(fields: [restavracija], references: [id])
+  restavracija String       @unique
+}
+
+model RestaurantImages {
+  id           String       @id @default(uuid())
+  image        String
+  Restavracija Restavracija @relation(fields: [restavracija], references: [id])
+  restavracija String
+}
+
+model Review {
+  id           String         @id @default(uuid())
+  like_num     Int
+  dislike_num  Int
+  Uporabnik    Uporabnik      @relation(fields: [uporabnik], references: [id])
+  uporabnik    String
+  Restavracija Restavracija   @relation(fields: [restavracija], references: [id])
+  restavracija String
+  text         String
+  comments     Komentar[]
+  images       ReviewImages[]
+}
+
+model ReviewImages {
+  id     String @id @default(uuid())
+  image  String
+  Review Review @relation(fields: [review], references: [id])
+  review String
+}
+
+model Komentar {
+  id          String    @id @default(uuid())
+  like_num    Int
+  dislike_num Int
+  Uporabnik   Uporabnik @relation(fields: [uporabnik], references: [id])
+  uporabnik   String
+  text        String
+  Review      Review    @relation(fields: [review], references: [id])
+  review      String
+}

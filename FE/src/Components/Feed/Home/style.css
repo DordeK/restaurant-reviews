@@ -7,3 +7,27 @@
     /* overflow-y: scroll; */
     flex-direction: column;
 }
+
+.container{
+  perspective: 320px;
+}
+
+.btnAddRestaurant{
+  display: block;
+  margin: 40px 0;
+  width: 240px;
+  height: 80px;
+  border: none;
+  background-color: #00a8ff;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 6px;
+  outline: none;
+  cursor: pointer;
+  transition: .3s linear;
+}
+
+.btnAddRestaurant:hover {
+  transform: rotateX(15deg);
+  box-shadow: 0 15px 15px #00a8ff;
+}

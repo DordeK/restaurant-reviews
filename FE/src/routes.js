@@ -2,9 +2,13 @@ import Login from 'Components/Authentication/Login'
 import Registration from 'Components/Authentication/Registration'
 import Home from 'Components/Feed/Home'
 import RestaurantProfile from 'Components/Feed/Restaurant/Profile'
-
+import AddRestaurant from 'Components/Publish/Restaurant/AddRestaurant'
 
 const routes = [
+    {
+        url: 'addRestaurant',
+        component: <AddRestaurant />
+    },
     {
         url: 'login',
         component: <Login />

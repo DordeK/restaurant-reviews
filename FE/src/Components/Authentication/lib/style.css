@@ -2,6 +2,12 @@
     background-color: white;
   }
   
+.error{
+  color: red;
+  padding: 30px;
+  border-radius:10px
+}
+
   .Auth-form-container {
     display: flex;
     justify-content: center;

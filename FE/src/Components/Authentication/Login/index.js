@@ -1,10 +1,30 @@
 import React from 'react'
 import 'Components/Authentication/lib/style.css'
+import axios from 'Components/lib/axios'
+import {useNavigate} from 'react-router-dom';
 
 function Login() {
+  const navigate = useNavigate();
+
+    const submit = async (form) => {
+      form.preventDefault();
+      const email = form.target.email.value
+      const password = form.target.password.value
+
+      const {status, data} = await axios.post('/login', {
+        email,
+        password,
+      })
+
+      if (status === 201 && data.username){
+        navigate('/home')
+      }
+      return
+    }
+
     return (
         <div className="Auth-form-container">
-          <form className="Auth-form">
+          <form onSubmit={submit} className="Auth-form">
             <div className="Auth-form-content">
               <h3 className="Auth-form-title">Sign In</h3>
               <div className="form-group mt-3">
@@ -28,9 +48,6 @@ function Login() {
                   Submit
                 </button>
               </div>
-              <p className="forgot-password text-right mt-2">
-                Forgot <a href="#">password?</a>
-              </p>
             </div>
           </form>
         </div>
