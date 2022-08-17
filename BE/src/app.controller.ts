@@ -13,18 +13,9 @@ import {
   Req,
 } from '@nestjs/common';
 import { AppService } from './app.service';
-import {
-  UserDto,
-  ReviewDto,
-  MenuDto,
-  LoginDto,
-  CommentDto,
-  RestaurantDto,
-  RefreshTokenDto,
-} from './Dto';
+import { UserDto, CommentDto } from './Dto';
 import { AnyFilesInterceptor } from '@nestjs/platform-express';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
-import { request } from 'http';
 
 @Controller()
 export class AppController {
