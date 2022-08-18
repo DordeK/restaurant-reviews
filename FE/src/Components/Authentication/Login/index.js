@@ -15,14 +15,15 @@ function Login() {
         email,
         password,
       })
-      
-      if (status === 201 && refreshToken) {
+      if (status === 201 && refreshToken && accessToken && id) {
         sessionStorage.setItem("refreshToken", refreshToken);
         sessionStorage.setItem("accessToken", accessToken);
         sessionStorage.setItem("user_id", id);
         sessionStorage.setItem("username", username);
         sessionStorage.setItem("email", userEmail);
         navigate('/home')
+      }else{
+        document.getElementById('error').innerHTML = 'Email or password was incorrect'
       }
       return
     }
@@ -49,6 +50,13 @@ function Login() {
                   className="form-control mt-1"
                   placeholder="Enter password"
                 />
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'red' }}  id='error'></div>
+              <div style={{cursor:'pointer'}} className="text-center">
+                Not registered yet?{" "}
+                <a href='register' className="link-primary">
+                  Register
+                </a>
               </div>
               <div className="d-grid gap-2 mt-3">
                 <button type="submit" className="btn btn-primary">

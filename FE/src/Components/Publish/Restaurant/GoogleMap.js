@@ -17,6 +17,11 @@ export default function SimpleMap({setLocation}){
                   coords['lat'] = position.coords.latitude;
                   coords['lng'] = position.coords.longitude
                   serCoords(coords)
+              }, () => {
+                let coords = {}
+                coords['lat'] = 46.0569
+                coords['lng'] = 14.5058
+                serCoords(coords)
               });
             }catch(e){
                 serCoords({})

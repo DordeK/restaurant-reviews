@@ -10,7 +10,7 @@ const routes = [
         component: <AddRestaurant />
     },
     {
-        url: 'login',
+        url: '',
         component: <Login />
     },
     {

@@ -71,7 +71,6 @@ export class AppController {
     @UploadedFiles() files: Array<Express.Multer.File>,
     @Body() review,
   ) {
-    console.log(request);
     return this.appService.addReview(files, review);
   }
 

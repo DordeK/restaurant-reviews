@@ -30,7 +30,6 @@ export function getPics() {
   const fullPage = document.querySelector('#fullpage');
   const body = document.querySelector('body');
 
-  console.log(imgs);
   imgs.forEach(img => {
     img.addEventListener('click', function() {
       body.style.overflow = 'hidden'

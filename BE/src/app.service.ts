@@ -162,7 +162,6 @@ export class AppService {
   }
 
   async addComment({ uporabnik, text, review }): Promise<CommentDto> {
-    console.log({ uporabnik, text, review });
     const addedComment = await prisma.komentar.create({
       data: {
         like_num: 0,

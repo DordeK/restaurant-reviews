@@ -10,12 +10,10 @@ export class AuthController {
 
   @Post('/login')
   async login(@Req() request, @Ip() ip: string, @Body() body: LoginDto) {
-    const a = this.authService.login(body.email, body.password, {
+    return await this.authService.login(body.email, body.password, {
       ipAddress: ip,
       userAgent: request.headers['user-agent'],
     });
-
-    return a;
   }
 
   @Post('refresh')

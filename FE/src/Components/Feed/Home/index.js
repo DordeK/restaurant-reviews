@@ -22,29 +22,32 @@ function Home() {
             const {data} = await axios.get(`/restaurants?page=${page}&lat=${position.coords.latitude}&lng=${position.coords.longitude}&radiousKm=${km}`)
             setRestaurants(data)
             return
-          },
-          (error) => {
-            console.log(error);
-          },
-          {
+          }, async (error) => {
+            const {data} = await axios.get(`/restaurants?page=${page}&lat=46.0569&lng=14.5058&radiousKm=${km}`)
+            console.log(data);
+            setRestaurants(data)
+          },{
             enableHighAccuracy: false,
             timeout: 5000,
             maximumAge: Infinity
           }
           );
         }else{
-        const {data} = await axios.get(`/restaurants?page=${page}`)
+          const {data} = await axios.get(`/restaurants?page=${page}&lat=46.0569&lng=14.5058&radiousKm=${km}`)
+
         setRestaurants(data)
       }
     }
+
     getRestaurants()
+
   }, [page, km])
 
 
   const logout = async () => {
     await axios.delete('/auth/logout')
     sessionStorage.clear()
-    navigation('/login')
+    navigation('/')
   }
 
   

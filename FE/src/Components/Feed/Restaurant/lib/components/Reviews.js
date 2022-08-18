@@ -10,8 +10,7 @@ function Reviews({reviews}) {
 
   const addComment = async (e, id) => {
     e.preventDefault()
-    console.log(e.target.comment.value);
-    console.log(reviews);
+
     const text = e.target.comment.value;
     const {status} = await axios.post('comment', {
       text,

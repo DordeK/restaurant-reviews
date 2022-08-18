@@ -21,7 +21,7 @@ const Registration = () => {
     })
 
     if (status === 201 && data.username){
-      navigate('/login')
+      navigate('/')
     }else{
       setServerError(data.error)
     }
@@ -74,6 +74,12 @@ const Registration = () => {
                 placeholder="Enter password"
               />
             </div>
+            <div style={{cursor:'pointer'}} className="text-center">
+                Not registered yet?{" "}
+                <a href='/' className="link-primary">
+                  Login
+                </a>
+              </div>
             <div className="d-grid gap-2 mt-3">
               <button type="submit" className="btn btn-primary">
                 Submit

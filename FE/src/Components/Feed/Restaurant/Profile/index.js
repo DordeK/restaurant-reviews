@@ -20,7 +20,6 @@ function Profile() {
   useEffect(() => {
     const getRestaurant = async () => {
       const {data} = await axios.get(`/restaurant/${id}`)
-      console.log({data});
       setRestaurant(data)
     }
     getRestaurant()
