@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "kaufman-bot",
+    "name": "BE",
     "builds": [
       {
         "src": "public/main.js",
