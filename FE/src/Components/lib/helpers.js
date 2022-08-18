@@ -24,7 +24,7 @@ export const addRestaurant = async ({e, navigation, location}) => {
          navigation(`/restaurant/${data}`)
      }
  }
-
+ 
 export function getPics() {
   const imgs = document.querySelectorAll('img');
   const fullPage = document.querySelector('#fullpage');
